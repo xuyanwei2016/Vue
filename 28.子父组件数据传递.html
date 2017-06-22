@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子父组件之间的数据传递</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+<template id="tap1">
+    <div>
+        <div>parent1111</div>
+        {{age}}
+        <child @s="p"></child><!--动态传递数据name-->
+    </div>
+</template>
+<script src="vue1.js"></script>
+<script>
+
+    var vm=new Vue({
+      el:'#app',
+        components:{
+          parent:{
+              template:'#tap1',
+              data(){
+                  return {age:0}
+              },
+              methods:{
+                  p(data){
+                      this.age=data
+                  }
+              },
+              components:{
+                  child:{
+                      template:'<div @click="sayage">child组件</div>',
+                      methods:{
+                          sayage(){
+                              //向上发射事件 $emit
+                              this.$emit('s',this.age)
+                          }
+                      },
+                      data(){
+                          return {age:18}
+                      }
+
+
+                  }
+              }
+
+          }
+        }
+    })
+</script>
+</body>
+</html>

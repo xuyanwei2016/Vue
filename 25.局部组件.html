@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+<div id="app">
+<hello/>
+</div>
+
+<script src="vue1.js"></script>
+<script>
+
+    var vm=new Vue({
+      el:'#app',
+        components:{
+          hello:{
+              template:'<div>必须的加外面的div{{name}}</div>',
+              data(){
+                  return {name:'zfxu'}
+              }
+          }
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兄弟之间的数据交互</title>
+</head>
+<body>
+<div id="app">
+<hello></hello>
+<hello1></hello1>
+</div>
+<template id="hello">
+    <div>
+        hello{{msg}}
+    </div>
+</template>
+<template id="hello1">
+    <div>
+        hello1
+        <button @click="send">兄弟数据之间的交换</button>
+    </div>
+</template>
+
+<script src="vue1.js"></script>
+<script>
+    //事件
+    var Event=new Vue;//有两个方法 Event.$on接收  Event.$emit发射
+var vm=new Vue({
+    el:'#app',
+    components:{
+
+        hello:{
+            data(data){
+                return {msg:''}
+            },
+            mounted(){
+                Event.$on('我饿了',(data)=>{
+                    this.msg=data
+                })
+            },//利用生命周期 组件一声明就会执行
+            template:'#hello'
+        },
+        hello1:{
+            data(){
+                return {msg:'我想吃饭'}
+            },
+            methods:{
+                send(){
+                    Event.$emit('我饿了',this.msg)
+                }
+            },
+            template:'#hello1'
+        }
+    }
+})
+</script>
+</body>
+</html>

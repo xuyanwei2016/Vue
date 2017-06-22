@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+<template id="tap1">
+    <div><div>parent1111</div><child></child></div>
+</template>
+<script src="vue1.js"></script>
+<script>
+
+    var vm=new Vue({
+      el:'#app',
+        components:{
+          parent:{
+              template:'#tap1',
+              components:{
+                  child:{
+                      template:'<div>child组件</div>'
+                  }
+              }
+
+          }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>is特性</title>
+</head>
+<body>
+<div id="app">
+<button type="button" @click="comp='hello'">显示英文hello</button>
+<button type="button" @click="comp='hello1'">显示中文你好</button>
+    <components :is="comp"></components>
+</div>
+<template id="hello">
+    <div>
+        hello111
+    </div>
+</template>
+<template id="hello1">
+    <div>
+        你好
+    </div>
+</template>
+<script src="vue1.js"></script>
+<script>
+var vm=new Vue({
+    el:'#app',
+    data:{
+      comp:'hello'/*默认是hello英文组件 是组件名*/
+    },
+    components:{
+        hello:{
+            template:'#hello'
+        },
+        hello1:{
+            template:'#hello1'
+        }
+    }
+})
+</script>
+</body>
+</html>

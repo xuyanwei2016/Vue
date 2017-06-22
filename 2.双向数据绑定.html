@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--双向数据绑定 需要一个指令-->
+    <!--所有的input表单元素都需要加v-model-->
+    <input type="text" v-model="message">
+    {{message=='hello'?200:message}} {{age=100}}    {{'1+2+3*7'}}
+    <div v-once>{{message}}</div>
+    <div v-html="message"></div>
+</div>
+<!--双向数据绑定 必须满足视图可以更改，表单元素 input-->
+<script src="vue1.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            message:'<h1>aaa zfpx</h1>',
+            age:0
+        }
+    })
+</script>
+</body>
+</html>

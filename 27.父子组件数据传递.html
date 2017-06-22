@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件之间的数据传递</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+<template id="tap1">
+    <div>
+        <div>parent1111</div>
+        <child :n="name"></child><!--动态传递数据name-->
+    </div>
+</template>
+<script src="vue1.js"></script>
+<script>
+
+    var vm=new Vue({
+      el:'#app',
+        components:{
+          parent:{
+              template:'#tap1',
+              data(){
+                  return{name:'xuyanwei'}
+              },
+              components:{
+                  child:{
+                      template:'<div>child组件{{n}}</div>',
+                      props:{n:String},/*获取到n并且对n进行校验必须是字符串 如果不想校验 只想拿到值的话['n']*/
+
+                  }
+              }
+
+          }
+        }
+    })
+</script>
+</body>
+</html>

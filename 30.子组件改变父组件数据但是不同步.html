@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件改变父组件的数据但是不同步</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+<template id="tep">
+<div>
+    <div>parent</div>{{name}}
+    <child :n="name"></child>
+</div>
+</template>
+<script src="vue1.js"></script>
+<script>
+/*运用第三方变量改变数据 在实例中改变第三方变量就可以了*/
+    var vm=new Vue({
+      el:'#app',
+      components:{
+          parent:{
+              template:'#tep',
+              data(){
+                  return {name:'zfpx'}
+              },
+              components:{
+                  child:{
+                      data(){
+                          return {a:''}
+                      },
+                      /*利用生命周期 当数据一声明的时候就把n改成a*/
+                      mounted:function(){
+                          this.a=this.n
+                      },
+                      template:'<div @click="updata">child {{a}}</div>',
+                      props:{n:String},
+                      methods:{
+
+                          updata(){
+                              this.a='xuyanwei'
+                          }
+                      },
+                  }
+              }
+          }
+
+      }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局组件</title>
+</head>
+<body>
+<div id="app">
+<hello></hello>
+</div>
+<div id="app1">
+    <hello></hello>
+</div>
+<script src="vue1.js"></script>
+<script>
+    /*在vue中组件不会继承父级*/
+    Vue.component('hello',{
+        template:'<div>{{msg}},hhhh</div>',/*这个内容外面必须加一个标签*/
+        data(){
+            return{
+                msg:'hello,女士'
+            }
+        }
+
+    });
+    var vm=new Vue({
+      el:'#app'
+    });
+        var vm=new Vue({
+            el:'#app1'
+        })
+</script>
+</body>
+</html>

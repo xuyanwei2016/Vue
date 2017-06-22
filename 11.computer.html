@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{total}}
+    {{count}}
+</div>
+<script src="vue1.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        a:1,
+        data:{
+            price:20,
+            count:10
+        },
+        //计算属性
+        computed:{
+            total:{
+                //当要算total总值的时候就会走get方法
+                get:function(){
+                    return this.price*this.count;
+                },
+                //当给total设置值的时候就走这个函数
+                set:function(total){
+                    this.count=total/this.price;
+                },
+
+            },
+
+        }
+    });
+    vm.$watch('total',function(newVal,oldVal){
+        console.log(newVal);
+        console.log(oldVal)
+    })
+    vm.total=300;
+    vm.$el.style.background='red';
+    //获取当前实例上挂载的数据
+    console.log(vm.$data);
+    //想拿到自定义的属性 $options
+    console.log(vm.$options.a);//1
+    //$watch监控数据变化
+</script>
+</body>
+</html>

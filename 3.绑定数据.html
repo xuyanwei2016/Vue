@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(msg,index) in msgs"> {{index}}{{msg}}</li>
+    </ul>
+
+</div>
+<script src="vue1.js"></script>
+<script>
+    new Vue(
+        {
+            el:'#app',
+            data:{
+                msgs:['三星','苹果','华为','三星']
+            }
+        }
+    )
+</script>
+</body>
+</html>

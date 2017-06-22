@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由查找参数</title>
+    <style>
+        .router-link-active{color:deeppink; font-size: 26px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-link to="/home">首页</router-link>
+    <router-link to="/list">列表页</router-link>
+    <router-view></router-view>
+
+</div>
+<script src="vue1.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    var Home={template:`<div>
+                        <div>首页内容</div>
+                        <router-link to="/home/login">登录</router-link>
+                        <router-link to="/home/reg">注册</router-link>
+                        <router-view></router-view>
+                        </div>`};
+    var List={template:`<div>
+                        <div>列表内容</div>
+                        <router-link to="/list/news/1">注册一</router-link>
+                        <router-link to="/list/news/2">二注册</router-link>
+                        <router-view></router-view>
+                        </div>`};
+    var router=new VueRouter({
+        routes:[
+            {path:'/home',
+                component:Home,
+                children:[
+                    {path:'login',component:{
+            template:'<div>登录里的内容</div>'
+                    }},
+                    {path:'reg',component:{
+                        template:'<div>注册里的content</div>'
+                    }}
+                ]},
+            {path:'/list',
+                component:List,
+                children:[
+                    {path:'news/:nid',component:{
+                        template:'<div>注册{{$route.params.nid}}的内容</div>',
+                    },
+                    /*如果想拿到id需要加入一个方法*/
+                    beforeEnter(to,from,next){
+                        /*from是来自于哪里 to去哪里  next是向下进行*/
+                        console.log(to.params.nid);//可以拿到去哪里的id
+                        next();//有这个就是为了继续往下进行 渲染组件 让组件显示在页面中
+                    }
+                    }
+                ]
+
+            },
+            {path:'*',component:Home}
+        ]
+    });
+
+    var vm=new Vue({
+        router,
+        el:'#app'
+    })
+</script>
+</body>
+</html>

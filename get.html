@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <button @click="getUser">向后台获取数据</button>
+    {{pot}}
+    <button @click="postUser">前台向后台提交数据</button>
+</div>
+<script src="vue1.js"></script>
+<script src="vue-resource.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            msg:'',
+            pot:''
+        },
+        methods:{
+            getUser(){
+                this.$http.get('/getUser').then(function(res){
+                    this.msg=res.body;
+                    console.log(res.body)
+                })
+            },
+            postUser(){
+                this.$http.post('/postUser',{name:'珠峰培训',age:11}).then(function(res){
+                    this.pot=res.body;
+                    console.log(res.body)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

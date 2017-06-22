@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+{{msg}}
+    <button @click="update"></button>
+</div>
+<script src="vue1.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            msg:'珠峰'
+        },
+        methods:{
+            update(){
+                this.msg='hello'
+            }
+        },
+        beforeCreate(){
+            alert('初始化之前')
+        },
+        created(){
+            alert('初始化完成')
+        },
+        beforeMount(){
+            alert('挂在前')
+        },
+        mounted(){
+            alert('挂载后')
+        },
+        beforeUpdate(){
+            alert('修改前')
+        },
+        updated(){
+            alert('修改后')
+        },
+        beforeDestroy(){
+            alert('销毁前')
+        },
+        destroyed(){
+            alert('销毁后')
+        }
+    })
+    /*vm.$mount('#app')*/
+</script>
+</body>
+</html>

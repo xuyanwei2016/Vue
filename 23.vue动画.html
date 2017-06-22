@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue动画</title>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        .box{
+            width:200px; height:200px; background: red;
+        }
+        .fly-enter{
+            width:100px; height:100px;
+        }
+        .fly-enter-active{-webkit-transition: 1s linear}
+        .fly-leave-active{
+        width:100px; height:100px;
+            -webkit-transition: 1s linear;
+        }
+        /*fly-enter 初始状态设置  fly-enter-active 激活进入时*/
+        /*fly-leave 初始离开状态设置  fly-leave-active 激活离开时*/
+    </style>
+</head>
+<body>
+<div id="app">
+<button @mouseover="flag=!flag" @mouseout="flag=!flag">显示隐藏</button>
+    <transition name="fly"><!--加transition表示里面的盒子是可以动画的-->
+        <div v-show="flag" class="box"></div>
+    </transition>
+
+</div>
+<script src="vue1.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            flag:true
+        },
+        transitions:{
+            fly:{
+                enterClass:'fadeInUp',
+                leaveClass:'fadeOutDown'
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>

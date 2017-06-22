@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义键盘事件</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.f1="fn" placeholder="按快捷键F1就会弹出OK">
+</div>
+<script src="vue1.js"></script>
+<script>
+    //Vue.directive('on').keyCodes.f1=112;//在vue1.0中的写法
+    Vue.config.keyCodes.f1=112;
+    var vm=new Vue({
+        el:'#app',
+        methods:{
+            fn(){
+                alert('ok')
+            }
+        }
+    })
+</script>
+</body>
+</html>

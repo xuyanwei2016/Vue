@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="fn($event)">+</button>
+    <button v-on:click="fx($event)">-</button>
+    <ul>
+        <li v-for="a in arr">{{a}}</li>
+    </ul>
+</div>
+<script SRC="vue1.js"></script>
+<script>
+    var vm=new Vue({
+        el:'#app',
+        methods:{//这里放的就是所有的方法
+            fn(e){
+                this.arr.push('iphone9')
+            },
+            fx(e){
+                this.arr.push('iphone'+(this.arr.length--))
+            }
+
+        },
+        data:{
+            arr:['iphone6','iphone7','iphone8']
+        }
+    })
+</script>
+
+
+</body>
+</html>

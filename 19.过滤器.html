@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自己写时间过滤器</title>
+</head>
+<body>
+<div id="app">
+    {{Date.now() | date("aaa","bbbbbb")}}
+</div>
+<script src="vue1.js"></script>
+<script src="vue-resource.js"></script>
+<script>
+    Vue.filter('date',function(input,param1,param2){
+        var d=new Date(input);
+        console.log(param1,param2);
+        return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}时${d.getMinutes()}分${d.getSeconds()}`
+    })
+    var vm=new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot插槽（可以显示app中直接写的内容）</title>
+</head>
+<body>
+<div id="app">
+<hello>zfpx今年8岁了</hello><!--组件里面的内容会被template中的内容替换-->
+
+
+    <hello1><!--如果想让’颠倒了‘先于’里面的内容‘显示的话-->
+        <div slot="cont">里面的内容</div>
+        <div slot="ddl">颠倒了</div>
+    </hello1>
+</div>
+<template id="hello">
+    <div>
+        hello   <slot></slot><!--加上<slot></slot>就会把zfpx今年8岁了也显示出来-->
+    </div>
+</template>
+<!--颠倒顺序的slot-->
+<template id="hello1">
+    <div>
+        hello1 <slot name="ddl"></slot>
+        <slot name="cont"></slot>
+    </div>
+</template>
+
+<script src="vue1.js"></script>
+<script>
+var vm=new Vue({
+    el:'#app',
+    data:{
+      comp:'hello'/*默认是hello英文组件 是组件名*/
+    },
+    components:{
+        hello:{
+            template:'#hello'
+        },
+        hello1:{
+            template:'#hello1'
+        }
+    }
+})
+</script>
+</body>
+</html>

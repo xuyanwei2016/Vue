@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件改变父组件的数据</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+<template id="tep">
+<div>
+    <div>parent</div>{{name.name}}
+    <child :n="name"></child>
+</div>
+</template>
+<script src="vue1.js"></script>
+<script>
+
+    var vm=new Vue({
+      el:'#app',
+      components:{
+          parent:{
+              template:'#tep',
+              data(){
+                  return {name:{name:'zfpx'}}//直接改变不可以 但是可以通过对象的方式改变 这样name就是name的属性了
+              },
+              components:{
+                  child:{
+                      template:'<div @click="updata">child {{n.name}}</div>',
+                      props:['n'],
+                      methods:{
+                          /*在vue2.0中子组件是不允许改变父组件的数据*/
+                          updata(){
+                              this.n.name='xuyanwei'
+                          }
+                      },
+                  }
+              }
+          }
+
+      }
+    })
+</script>
+</body>
+</html>

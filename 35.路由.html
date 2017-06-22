@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+    <style>
+        .router-link-active{color:deeppink; font-size: 26px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-link to="/home">登录</router-link>
+    <router-link to="/list">注册</router-link>
+    <router-view></router-view>
+
+</div>
+<script src="vue1.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    var Home={template:`<div>
+                <h1>登录</h1>
+                <router-link to="/home/home1">登录一</router-link>
+                <router-link to="/home/home2">登录二</router-link>
+                <router-view></router-view>
+</div>`};
+    var List={template:'<h1>注册</h1>'};
+    var router=new VueRouter({
+       routes:[
+           {path:'/home',
+           component:Home,
+           children:[
+               {path:'home1',component:{
+           template:'<div>登录一里的内容</div>'
+               }},
+               {path:'home2',component:{
+                   template:'<div>登录二里的内容</div>'
+               }}/*,
+               {path:'*',component:{
+                   template:'<h1>默认显示内容</h1>'
+               }}*/
+           ]},
+           {path:'/list',component:List},
+           {path:'*',component:Home}
+
+       ]
+    });
+    var vm=new Vue({
+        router,
+        el:'#app'
+    })
+</script>
+</body>
+</html>
